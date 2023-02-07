@@ -13,6 +13,6 @@ app.use(routes)
 
 sequelize.sync({sequelize}).then(() => {
     app.listen(port, () => {
-        console.log("Express server listening on port 3000.")
+        console.log(`Express server listening on port ${port}.`)
     })
 })
