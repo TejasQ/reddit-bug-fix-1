@@ -3,8 +3,8 @@ const models = require('../models')
 require('dotenv').config()
 
 const sequelize = new Sequelize(process.env.TABLE_NAME, process.env.USER, process.env.PASS, {
-  host: 'localhost',
-  dialect: 'mysql',
+  host: 'postgres://team_maker_user:sWz4zGVcduCdFHERiOo8SVmErRx1aBQ3@dpg-cfha6vta499dgj0n1fsg-a.ohio-postgres.render.com/team_maker',
+  dialect: 'postgres',
 });
 
 Object.values(models)

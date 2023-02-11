@@ -1,5 +1,14 @@
-.App {
-  text-align: center;
+.App{
+  font-family: 'Arvo';
+  color:#963a2f;
+  background-color:#fffee9;
+  background-position:center;
+  height:100vh;
+  background-size: cover;
+}
+
+body{
+  background-color:#fffee9;
 }
 
 .App-logo {
@@ -24,6 +33,13 @@
   color: white;
 }
 
+@media screen and (max-width: 767px) {
+  .navUnit, #teams {
+    display: inline;
+    width: 100%;
+  }
+}
+
 .App-link {
   color: #61dafb;
 }
@@ -41,6 +57,61 @@ h3{
   text-decoration:none;
 }
 
-Link{
+#teams{
+  background-color: #fffee9;
+  display:flex;
+  justify-content:space-around;
+  
+}
+
+.navUnit{
+  display: inline-block;
   text-decoration: none;
+  font-family: 'Zen Dots'
+}
+
+#navBar{
+  display: flex;
+  justify-content: space-around;
+  padding:50px;
+  padding-color: fffee9;
+  background-color:	#a8a676;
+  border-style:double;
+  border-width: 5px;
+}
+
+#navParent{
+  display:flex;
+  justify-content: inline-block;
+}
+
+.member{
+  display:flex;
+  justify-content: space-around;
+  width: 300px;
+  background-color:#d58258 ;
+  border: double;
+  display: block;
+  border-radius: 15px;
+  text-align: center;
+}
+
+#about{
+  padding-left:50px;
+}
+
+#newTeamMem{
+  display:flex;
+  flex-direction:column;
+  width: 300px;
+  margin: auto;
+}
+
+input{
+  border-radius:8px;
+  border-color: #963a2f;
+}
+
+#contact{
+  padding-left:50px
 }

@@ -1,10 +1,11 @@
 
 import React, {useState} from 'react'
-import axios from 'axios'
+
 
 export default function Questions (){
 
     const [formData, setFormData] = useState({
+        // id:'',
         first_name:'',
         last_name:'',
         role:'',
@@ -12,20 +13,33 @@ export default function Questions (){
         additional_thoughts:''
     })
 
+    const [teamQuantity, setTeamQuantity] = useState(0);
+
     const handleSubmit = (e) => {
         e.preventDefault()
-        axios
-        .post('http://localhost:5445/api/teams/', formData)
-        .then((res) => {
-            console.log(res)
-        }).catch((err) => {
-            console.log(err)
-        })
+       if (!formData.first_name || !formData.last_name || !formData.role || !formData.duties){
+        alert(`You are missing the following feilds: ${!formData.first_name ? 'First Name ' : ''}${!formData.last_name ? 'Last Name ' : ''}${!formData.role ? 'Role ' : ''}${!formData.duties ? 'Duties ' : ''}`)
+        return
+       }else{
+        const newData = {
+            ...formData,
+            first_name:formData.first_name.charAt(0).toUpperCase() + formData.first_name.slice(1),
+            last_name : formData.last_name.charAt(0).toUpperCase() + formData.last_name.slice(1),
+            id: teamQuantity}
+        setFormData({...formData, [`${formData.lat_name}` + ', ' + `${formData.last_name}`]: newData })
+    
+        localStorage.setItem(`${newData.id}_${newData.last_name}`, JSON.stringify(newData))
+        console.log(localStorage)
+        setTeamQuantity(teamQuantity + 1)
+        // localStorage.clear()
     }
-// `http://localhost:${process.env.PORT}/api/teams`
+}
+
     const handleChange = (e) => {
         setFormData({...formData, [e.target.name]: e.target.value})
     }
+    console.log(localStorage)
+    
 
     return(
         <form id='newTeamMem' onSubmit={handleSubmit}>
@@ -36,9 +50,9 @@ export default function Questions (){
             <label htmlFor='role'>Role: </label>
             <input type='text' name='role' placeholder='Role'onChange={handleChange} />
             <label htmlFor='duties'>Duties: </label>
-            <input type='textarea' name='duties' rows='4' cols='50' onChange={handleChange} />
+            <input type='textarea' name='duties' rows='4' cols='50' placeholder='Duties' onChange={handleChange} />
             <label htmlFor='additional_thoughts'>Additional Thoughts: </label>
-            <input type='textarea' name='additional_thoughts' rows='6' cols='50' onChange={handleChange} />
+            <input type='textarea' name='additional_thoughts' rows='6' cols='50' placeholder='Additional Thoughts' onChange={handleChange} />
             <input type='submit' value='Submit'/>
         </form>
     )
